@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Verificación de Software</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        td input[type="radio"] {
+            cursor: pointer;
+        }
+        textarea {
+            width: 100%;
+            height: 50px;
+            resize: none;
+        }
+        button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Lista de Verificación de Software</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Criterio</th>
+                <th>Sí</th>
+                <th>No</th>
+                <th>Observaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Interfaz fácil de usar y accesible</td>
+                <td><input type="radio" name="criterio1" value="Si"></td>
+                <td><input type="radio" name="criterio1" value="No"></td>
+                <td><textarea name="observacion1"></textarea></td>
+            </tr>
+            <tr>
+                <td>Registro eficiente de parámetros</td>
+                <td><input type="radio" name="criterio2" value="Si"></td>
+                <td><input type="radio" name="criterio2" value="No"></td>
+                <td><textarea name="observacion2"></textarea></td>
+            </tr>
+            <tr>
+                <td>Visualización de datos históricos</td>
+                <td><input type="radio" name="criterio3" value="Si"></td>
+                <td><input type="radio" name="criterio3" value="No"></td>
+                <td><textarea name="observacion3"></textarea></td>
+            </tr>
+            <tr>
+                <td>Alertas y notificaciones</td>
+                <td><input type="radio" name="criterio4" value="Si"></td>
+                <td><input type="radio" name="criterio4" value="No"></td>
+                <td><textarea name="observacion4"></textarea></td>
+            </tr>
+            <tr>
+                <td>Control de acceso (usuarios y contraseñas)</td>
+                <td><input type="radio" name="criterio5" value="Si"></td>
+                <td><input type="radio" name="criterio5" value="No"></td>
+                <td><textarea name="observacion5"></textarea></td>
+            </tr>
+            <tr>
+                <td>Capacidad de exportación de datos (PDF/Excel)</td>
+                <td><input type="radio" name="criterio6" value="Si"></td>
+                <td><input type="radio" name="criterio6" value="No"></td>
+                <td><textarea name="observacion6"></textarea></td>
+            </tr>
+            <tr>
+                <td>Tiempos de respuesta rápidos</td>
+                <td><input type="radio" name="criterio7" value="Si"></td>
+                <td><input type="radio" name="criterio7" value="No"></td>
+                <td><textarea name="observacion7"></textarea></td>
+            </tr>
+            <tr>
+                <td>Seguridad de la información</td>
+                <td><input type="radio" name="criterio8" value="Si"></td>
+                <td><input type="radio" name="criterio8" value="No"></td>
+                <td><textarea name="observacion8"></textarea></td>
+            </tr>
+            <tr>
+                <td>Soporte técnico disponible</td>
+                <td><input type="radio" name="criterio9" value="Si"></td>
+                <td><input type="radio" name="criterio9" value="No"></td>
+                <td><textarea name="observacion9"></textarea></td>
+            </tr>
+            <tr>
+                <td>Compatibilidad con dispositivos móviles</td>
+                <td><input type="radio" name="criterio10" value="Si"></td>
+                <td><input type="radio" name="criterio10" value="No"></td>
+                <td><textarea name="observacion10"></textarea></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button id="submitButton">Enviar Lista de Verificación</button>
+</div>
+
+<script>
+    document.getElementById('submitButton').addEventListener('click', function() {
+        const criterios = document.querySelectorAll('tbody tr');
+        let resultados = [];
+
+        criterios.forEach((criterio, index) => {
+            const criterioNombre = criterio.querySelector('td').innerText;
+            const opcionSi = criterio.querySelector(`input[name="criterio${index+1}"]:checked`);
+            const observacion = criterio.querySelector(`textarea[name="observacion${index+1}"]`).value;
+
+            const resultado = {
+                criterio: criterioNombre,
+                respuesta: opcionSi ? opcionSi.value : 'No seleccionado',
+                observacion: observacion.trim()
+            };
+
+            resultados.push(resultado);
+        });
+
+        console.log('Resultados de la verificación:', resultados);
+        alert('Lista de verificación enviada con éxito. Revisa la consola para ver los detalles.');
+    });
+</script>
+
+</body>
+</html>
